@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+
+    <style>
+
+        .slider-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .slider {
+            display: flex;
+            aspect-ratio: 16/9;
+            overflow-x: auto;
+            box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
+            scroll-behavior: smooth;
+        }
+
+        .slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .slider img {
+            flex: 1 0 100%;
+            border-radius: 12px;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <section>
+        <div class="slider-wrapper">
+            <div class="slider">
+                <img id="slide-one" src="./background arabic.png" alt="">
+                <img id="slide-two" src="./background english.png" alt="">
+                <img id="slide-three" src="./ctacover.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+
+
+    <script>
+
+        const slider = document.querySelector('.slider');
+        const sliderWidth = slider.scrollWidth;
+        const containerWidth = slider.clientWidth;
+
+        let scrollPosition = 0;
+
+        function autoScrollSlider() {
+            slider.scrollBy({
+                left: containerWidth,
+            });
+
+            scrollPosition += containerWidth;
+
+            if (scrollPosition >= sliderWidth ) {
+                slider.scrollTo({ left: 0});
+                scrollPosition = 0;
+            }
+        }
+
+        setInterval(autoScrollSlider, 3000);
+
+    </script>
+</body>
+</html>
